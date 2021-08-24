@@ -27,7 +27,7 @@ This tutorial will walk you through the steps to create this sample web applicat
 You will need to make sure you have the following components installed and set up before you start with Amazon EKS:
 
 - **AWS Account –** Sign up for a free AWS account [here.](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
-- **Required IAM permissions** – The IAM security principal that you're using must have permissions to work with AWS Lambda IAM roles and service linked roles. You must complete all steps in this guide as the same user.
+- **Required IAM permissions** – With the personal AWS Free Account, you have the administrator permissions required to create and edit IAM policies. In any other kind of AWS account, the IAM security principal that you're using must have permissions to work with AWS Lambda IAM roles and service linked roles. You must complete all steps in this guide as the same user.
   
 ## Step 1: Create Web App
 You will use the AWS Amplify Console to deploy the static resources for your web application.
