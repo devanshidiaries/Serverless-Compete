@@ -446,7 +446,7 @@ We will update the static website we created in Step 1 to invoke the REST API we
 
 6.1.10. When the file is uploaded, a Deployment process will automatically begin. Once you see a green bar, your deployment will be complete.
 
-### 6.2. Test Updted Web App
+### 6.2. Test Updated Web App
 
 6.2.1. Click on the URL under **Domain**.
 
