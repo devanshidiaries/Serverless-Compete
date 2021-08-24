@@ -1,6 +1,6 @@
 # AWS Lambda for Azure Functions user's tutorial (GUI edition)
 
-To get the most from this tutorial, you must know how to hoost  on Azure. In this tutorial you will build an EKS cluster on AWS, deploy worker nodes and install a simple guestbook application. You will be using AWS' `us-west-2` region to deploy your EKS cluster. 
+To get the most from this tutorial, you must know how to deploy applications using Azure Funcitons. 
 
 This is a free lab that takes 30 minutes to complete. Make sure you terminate all the services at the end of this lab. 
 
