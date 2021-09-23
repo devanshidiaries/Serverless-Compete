@@ -39,7 +39,7 @@ Select the project you have created from the dropdown list
 
 2.1. For each service you use, you need to ensure the Google cloud APIs are enabled. From the cloud console, go to the API and Services page.
 
-![image](./Sscreenshots/003.PNG)
+![image](./Screenshots/003.PNG)
 
 2.2. Select  **+Enable APIs and Services**.
 
