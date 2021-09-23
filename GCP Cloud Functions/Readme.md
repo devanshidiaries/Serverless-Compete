@@ -49,6 +49,7 @@ Select the project you have created from the dropdown list
 - Cloud SQL Admin API
 - Secret Manager API
 - Cloud Build API
+- Compute Engine API
 
 ## Step 3: Create Source Bucket
 
@@ -64,9 +65,93 @@ Select the project you have created from the dropdown list
 
 3.6. Click the **Create** button.
 
-## Step 4: Create Serverless Function
+## Step 4: Create the Library Database
 
-### 4.1. 
+### 4.1. Create Cloud SQL Instance
+
+4.1.1. Go to [Cloud SQL Console.](https://console.cloud.google.com/sql)
+
+4.1.2. Select **Create Instance**.
+
+4.1.3. Select **Choose MYSQL**.
+
+4.1.4. For **Instance ID**, type *myinstance*.
+
+4.1.5. Add a **Passowrd** to access your database with secured privileges.
+
+4.1.6. Select `us-west3 (Salt Lake City)` for **Region**.
+
+4.1.7. Select *Single Zone* for **Zonal availability**.
+
+4.1.8. Select **Show Configuration Options** under Customize your instance.
+
+4.1.9. Select *Shared core* as your **Machine Type**.
+
+4.1.10. Under Storage, select *10 GB* as **Storage capacity**. *Uncheck* **Enable automatic storage increases**.
+
+4.1.11. Under Backups, *uncheck* **Automate backups** and **Enable point-in-time recovery**.
+
+4.1.12. Click **CREATE INSTANCE**.
+
+4.1.13. **Copy and save** the **Connection name** under the Overview tab (you will need it in Step 5).
+
+### 4.2. Create a MYSQL Database
+
+4.2.1. Setup **Cloud Shell**. Click on the **Activate Cloud Shell** icon on the top right corner in GCP Console.
+
+![image](./Screenshots/004.PNG)
+
+4.2.2. Use the below command in cloud shell to connect to your database instance created in Step 4.1. Click **Authorize** when prompted.
+
+~~~
+gcloud sql connect myinstance --user=root
+~~~
+
+4.2.3. When prompted, type the password created in the previous step and press the *Enter* key.
+
+4.2.4. Use the below SQL commands to create a database named *library* and a table named *books*.
+
+~~~
+CREATE DATABASE library;
+USE library;
+CREATE TABLE books (title VARCHAR(100));
+INSERT into books (title) VALUES ("Digital Transformation 2020");
+~~~
+
+4.2.5. To verify the insertion of the first record from the last command, use the below SQL command
+
+~~~
+select * from books;
+~~~
+
+You should see 1 row set as shown below
+
+![image](./Screenshots/005.PNG)
+
+## Step 5: Add Security for Database Connection
+
+## Step 6: Create Serverless Function
+
+### 6.1. Create a function.
+
+6.1.1. Go to [Cloud Functions Console.](https://console.cloud.google.com/functions)
+
+6.1.2. Select **Create Function**.
+
+6.1.3. For **Function name**, type *librarysys*.
+
+6.1.4. Select `us-west3` as the **Region**.
+
+6.1.5. Select *Cloud Storage* as the **Trigger Type**.
+
+6.1.6. Select *Finalize/Create* as the **Event Type**.
+
+6.1.7. Click on **BROWSE** to select the source bucket you create in Step 3.
+
+6.1.8. Click on **SAVE**.
+
+### 6.2. Add
+
 
 
 
