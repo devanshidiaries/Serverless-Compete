@@ -16,10 +16,10 @@ This tutorial will walk you through the steps to create this sample processing s
 
 ![Architecture Diagram](./screenshots/001.PNG)
 
-- **Cloud Storage -** We will use the [AWS Identity and Access Management (IAM) service](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) to securely give our services the required permissions to interact with each other.
-- **Cloud Functions -** All of your static web content, including HTML, CSS, JavaScript, images and other files, will be hosted by [AWS Amplify.](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)
-- **Secrets Manager -** We will use [Amazon API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) to create a RESTful API that will allow us to make calls to our Lambda function from a web client.
-- **Cloud SQL -** You will use the compute service [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html), to create serverless functions, writing a small piece of code in Python to add interactivity to your web page.
+- **Cloud Storage -** We will use the [Cloud Storage](https://cloud.google.com/storage) to store new documents to be processed by the function.
+- **Cloud Functions -** All of your business process logic will be hosted by [Cloud Functions.](https://cloud.google.com/functionsl) to run your code with zero server management.
+- **Secret Manager -** You will use [Secret Manager](https://cloud.google.com/secret-manager) to manage, access, and audit secrets across Google Cloud.
+- **Cloud SQL -** You will use the fully managed relational database service for MySQL, [Cloud SQL](https://cloud.google.com/sql), to write data from within serverless functions, writing a small piece of code in Python to add interactivity to your funciton.
 
 ## Step 0: Before You Start
 
