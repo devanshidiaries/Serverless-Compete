@@ -14,7 +14,7 @@ This tutorial will walk you through the steps to create this sample processing s
 
 ## Application Architecture
 
-![Architecture Diagram](./screenshots/001.PNG)
+![Architecture Diagram](./screenshots/001.png)
 
 - **Cloud Storage -** We will use the [Cloud Storage](https://cloud.google.com/storage) to store new documents to be processed by the function.
 - **Cloud Functions -** All of your business process logic will be hosted by [Cloud Functions.](https://cloud.google.com/functionsl) to run your code with zero server management.
