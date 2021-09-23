@@ -54,5 +54,20 @@ Select the project you have created from the dropdown list
 
 3.1. Go to [Cloud Storage Console.](https://console.cloud.google.com/storage)
 
-3.2. 
+3.2. Select **+Create Bucket**.
+
+3.3. Name your bucket - *docs\<yournameinitials\>*, for e.g. *docsdj*.
+
+3.4. For **Location type**, select *Region*. In the **Location** drop down options, select `us-west3 (Salt Lake City)`.
+
+3.5. Select *Standard* for **Choose default storage class for your data**.
+
+3.6. Click the **Create** button.
+
+## Step 4: Create Serverless Function
+
+### 4.1. 
+
+
+
 
