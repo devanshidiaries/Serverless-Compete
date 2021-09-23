@@ -95,7 +95,7 @@ Select the project you have created from the dropdown list
 
 4.1.13. **Copy and save** the **Connection name** under the Overview tab (you will need it in Step 5).
 
-### 4.2. Create a MYSQL Database
+### 4.2. Create Books Table in the Library Database
 
 4.2.1. Setup **Cloud Shell**. Click on the **Activate Cloud Shell** icon on the top right corner in GCP Console.
 
@@ -107,7 +107,7 @@ Select the project you have created from the dropdown list
 gcloud sql connect myinstance --user=root
 ~~~
 
-4.2.3. When prompted, type the password created in the previous step and press the *Enter* key.
+4.2.3. When prompted, type the password you created in the Step 4.1.5. and press the *Enter* key.
 
 4.2.4. Use the below SQL commands to create a database named *library* and a table named *books*.
 
@@ -129,6 +129,16 @@ You should see 1 row set as shown below
 ![image](./Screenshots/005.PNG)
 
 ## Step 5: Add Security for Database Connection
+
+5.1. Go to [Secret Manager.](https://console.cloud.google.com/security/secret-manager)
+
+5.1. Select **+ Create Secret**.
+
+5.2. For **Name**, type *dbconnectionname*. In the **Secret Value** field, type the *\<Database Connection Name\>* saved in Step 4.1.13. Click **CREATE SECRET**.
+
+5.3. Go back to the Secret Manager Parent Page. Repeat Steps 5.1. and 5.2. to create 2 additional secrets.
+- Secret Name: *dbuser* and Secret Value: *root*
+- Secret Name: *dbpassword* and Secret Value: *\<type the password you created in the Step 4.1.5.>*
 
 ## Step 6: Create Serverless Function
 
