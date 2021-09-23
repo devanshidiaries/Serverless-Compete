@@ -162,9 +162,84 @@ You should see 1 row set as shown below
 
 6.1.8. Click on **SAVE**.
 
-### 6.2. Add
+### 6.2. Add Security Settings
+
+6.2.1. Select the **Secrets** tab. Click on **REFERENCE A SECRET**.
+
+6.2.2. Click on **REFERENCE A SECRET**. 
+
+6.2.3. In the **Secret** field, select *dbconnectionname*. **GRANT** the function permission to access the secret. 
+
+6.2.4. Select *Exposed as environment variable* for the **Reference Method**.
+
+6.2.5. Type *dbcon* in the **Name** field for **Environment variables**. Click **DONE**.
+
+6.2.6. Repeat Step 6.2.2 to Step 6.2.5 for the remaining 2 secrests. 
+- For *dbuser* secret, type *username* as the Environment variable Name.
+- For *dbpassword* secret, type *password* as the Environment variable Name.
+
+6.2.7. Click the **NEXT** button.
+
+### 6.3. Complete the Function Code
+
+6.3.1. Select *Python 3.7* for **Runtime**.
+
+6.3.2. In the `main.py` file, delete the existing code and paste the following code snippet.
+~~~
+import os
+import sqlalchemy
+connection_name = os.environ["dbcon"]
+table_name = "books"
+table_field = "title"
+#table_field_value = "event['name']"
+db_name = "library"
+db_user = os.environ["username"]
+db_password = os.environ["password"]
+driver_name = 'mysql+pymysql'
+query_string = dict({"unix_socket": "/cloudsql/{}".format(connection_name)})
+
+def hello_gcs(event, context):
+    #book = event
+    print("New book entry will be: {}".format(event['name']))
+    stmt = sqlalchemy.text('insert into {} ({}) values ("{}")'.format(table_name, table_field, event['name']))
+    print("stmt: {}".format(stmt))
+    db = sqlalchemy.create_engine(
+      sqlalchemy.engine.url.URL(
+        drivername=driver_name,
+        username=db_user,
+        password=db_password,
+        database=db_name,
+        query=query_string,
+      ),
+      pool_size=5,
+      max_overflow=2,
+      pool_timeout=30,
+      pool_recycle=1800
+    )
+    try:
+        with db.connect() as conn:
+            conn.execute(stmt)
+    except Exception as e:
+        return 'Error: {}'.format(str(e))
+    return 'ok'
+~~~
+
+6.3.3. In the `requirements.txt` file, delete the existing code and paste the following code snippet.
+~~~
+# This file tells Python which modules it needs to import
+functions-framework==2.2.1
+SQLAlchemy==1.3.12      
+PyMySQL==0.9.3
+~~~
+
+6.3.4. Click the **DEPLOY** button at the bottom.
 
 
+## Step 7: Test the Solution
 
+7.1. Go to your Cloud Storage Bucket (created in [Step 4](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-4-create-source-bucket))
 
+7.2. Drag and drop a `.txt` file.
+
+> This activated the Cloud Storage trigger for Cloud Functions, firing off the `librarysys` function we created in Step 6
 
