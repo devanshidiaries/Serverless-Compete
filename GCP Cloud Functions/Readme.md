@@ -140,7 +140,7 @@ You should see 1 row set as shown below
 
 5.3. Go back to the Secret Manager Parent Page. Repeat Steps 5.1. and 5.2. to create 2 additional secrets.
 - Secret Name: *dbuser* and Secret Value: *root*
-- Secret Name: *dbpassword* and Secret Value: *\<type the password you created in the [Step 4.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance)>*
+- Secret Name: *dbpassword* and Secret Value: *\<type the password you created in the [Step 3.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance)>*
 
 ## Step 6: Create Serverless Function
 
