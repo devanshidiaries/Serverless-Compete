@@ -51,65 +51,51 @@ Select the project you have created from the dropdown list
 - Cloud Build API
 - Compute Engine API
 
-## Step 3: Create Source Bucket
+## Step 3: Create the Library Database
 
-3.1. Go to [Cloud Storage Console.](https://console.cloud.google.com/storage)
+### 3.1. Create Cloud SQL Instance
 
-3.2. Select **+Create Bucket**.
+3.1.1. Go to [Cloud SQL Console.](https://console.cloud.google.com/sql)
 
-3.3. Name your bucket - *docs\<yournameinitials\>*, for e.g. *docsdj*.
+3.1.2. Select **Create Instance**.
 
-3.4. For **Location type**, select *Region*. In the **Location** drop down options, select `us-west3 (Salt Lake City)`.
+3.1.3. Select **Choose MYSQL**.
 
-3.5. Select *Standard* for **Choose default storage class for your data**.
+3.1.4. For **Instance ID**, type *myinstance*.
 
-3.6. Click the **Create** button.
+3.1.5. Add a **Passowrd** to access your database with secured privileges.
 
-## Step 4: Create the Library Database
+3.1.6. Select `us-west3 (Salt Lake City)` for **Region**.
 
-### 4.1. Create Cloud SQL Instance
+3.1.7. Select *Single Zone* for **Zonal availability**.
 
-4.1.1. Go to [Cloud SQL Console.](https://console.cloud.google.com/sql)
+3.1.8. Select **Show Configuration Options** under Customize your instance.
 
-4.1.2. Select **Create Instance**.
+3.1.9. Select *Shared core* as your **Machine Type**.
 
-4.1.3. Select **Choose MYSQL**.
+3.1.10. Under Storage, select *10 GB* as **Storage capacity**. *Uncheck* **Enable automatic storage increases**.
 
-4.1.4. For **Instance ID**, type *myinstance*.
+3.1.11. Under Backups, *uncheck* **Automate backups** and **Enable point-in-time recovery**.
 
-4.1.5. Add a **Passowrd** to access your database with secured privileges.
+3.1.12. Click **CREATE INSTANCE**.
 
-4.1.6. Select `us-west3 (Salt Lake City)` for **Region**.
+3.1.13. **Copy and save** the **Connection name** under the Overview tab (you will need it in [Step 5](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-5-add-security-for-database-connection)).
 
-4.1.7. Select *Single Zone* for **Zonal availability**.
+### 3.2. Create Books Table in the Library Database
 
-4.1.8. Select **Show Configuration Options** under Customize your instance.
-
-4.1.9. Select *Shared core* as your **Machine Type**.
-
-4.1.10. Under Storage, select *10 GB* as **Storage capacity**. *Uncheck* **Enable automatic storage increases**.
-
-4.1.11. Under Backups, *uncheck* **Automate backups** and **Enable point-in-time recovery**.
-
-4.1.12. Click **CREATE INSTANCE**.
-
-4.1.13. **Copy and save** the **Connection name** under the Overview tab (you will need it in [Step 5](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-5-add-security-for-database-connection)).
-
-### 4.2. Create Books Table in the Library Database
-
-4.2.1. Setup **Cloud Shell**. Click on the **Activate Cloud Shell** icon on the top right corner in GCP Console.
+3.2.1. Setup **Cloud Shell**. Click on the **Activate Cloud Shell** icon on the top right corner in GCP Console.
 
 ![image](./Screenshots/004.PNG)
 
-4.2.2. Use the below command in cloud shell to connect to your database instance created in [Step 4.1.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#41-create-cloud-sql-instance) Click **Authorize** when prompted.
+3.2.2. Use the below command in cloud shell to connect to your database instance created in [Step 3.1.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance) Click **Authorize** when prompted.
 
 ~~~
 gcloud sql connect myinstance --user=root
 ~~~
 
-4.2.3. When prompted, type the password you created in the [Step 4.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#41-create-cloud-sql-instance) and press the *Enter* key.
+3.2.3. When prompted, type the password you created in the [Step 3.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance) and press the *Enter* key.
 
-4.2.4. Use the below SQL commands to create a database named *library* and a table named *books*.
+3.2.4. Use the below SQL commands to create a database named *library* and a table named *books*.
 
 ~~~
 CREATE DATABASE library;
@@ -118,7 +104,7 @@ CREATE TABLE books (title VARCHAR(100));
 INSERT into books (title) VALUES ("Digital Transformation 2020");
 ~~~
 
-4.2.5. To verify the insertion of the first record from the last command, use the below SQL command
+3.2.5. To verify the insertion of the first record from the last command, use the below SQL command
 
 ~~~
 select * from books;
@@ -128,6 +114,20 @@ You should see 1 row set as shown below
 
 ![image](./Screenshots/005.PNG)
 
+## Step 4: Create Source Bucket
+
+4.1. Go to [Cloud Storage Console.](https://console.cloud.google.com/storage)
+
+4.2. Select **+Create Bucket**.
+
+4.3. Name your bucket - *docs\<yournameinitials\>*, for e.g. *docsdj*.
+
+4.4. For **Location type**, select *Region*. In the **Location** drop down options, select `us-west3 (Salt Lake City)`.
+
+4.5. Select *Standard* for **Choose default storage class for your data**.
+
+4.6. Click the **Create** button.
+
 ## Step 5: Add Security for Database Connection
 
 5.1. Go to [Secret Manager.](https://console.cloud.google.com/security/secret-manager)
@@ -136,11 +136,11 @@ You should see 1 row set as shown below
 
 5.1. Select **+ Create Secret**.
 
-5.2. For **Name**, type *dbconnectionname*. In the **Secret Value** field, type the *\<Database Connection Name\>* saved in Step 4.1.13. Click **CREATE SECRET**.
+5.2. For **Name**, type *dbconnectionname*. In the **Secret Value** field, type the *\<Database Connection Name\>* saved in [Step 3.1.13.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance) Click **CREATE SECRET**.
 
 5.3. Go back to the Secret Manager Parent Page. Repeat Steps 5.1. and 5.2. to create 2 additional secrets.
 - Secret Name: *dbuser* and Secret Value: *root*
-- Secret Name: *dbpassword* and Secret Value: *\<type the password you created in the [Step 4.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#41-create-cloud-sql-instance)>*
+- Secret Name: *dbpassword* and Secret Value: *\<type the password you created in the [Step 4.1.5.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#31-create-cloud-sql-instance)>*
 
 ## Step 6: Create Serverless Function
 
@@ -158,7 +158,7 @@ You should see 1 row set as shown below
 
 6.1.6. Select *Finalize/Create* as the **Event Type**.
 
-6.1.7. Click on **BROWSE** to select the source bucket you create in [Step 3.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-3-create-source-bucket)
+6.1.7. Click on **BROWSE** to select the source bucket you create in [Step 4.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-4-create-source-bucket)
 
 6.1.8. Click on **SAVE**.
 
