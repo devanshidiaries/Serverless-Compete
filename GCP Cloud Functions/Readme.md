@@ -8,9 +8,9 @@ This is a free lab that takes 30 minutes to complete. Make sure you terminate al
 
 In this tutorial, you will create a simple library processing system. When a new text document is added to the source bucket, your function will add this to the books collection in the database.
 This tutorial will walk you through the steps to create this sample processing system. You will learn to:
-- Create a serverless back-end function
-- Add interactivity to your function with storage and database
-- Add security to the function operations
+- Create a serverless back-end function.
+- Add interactivity to your function with storage and database.
+- Add security to the function operations with the database.
 
 ## Application Architecture
 
