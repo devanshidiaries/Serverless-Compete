@@ -46,7 +46,6 @@ Select the project you have created from the dropdown list
 2.3. Enable the following APIs:
 
 - Cloud Functions API
-- Cloud SQL Admin API
 - Secret Manager API
 - Cloud Build API
 - Compute Engine API
@@ -55,7 +54,7 @@ Select the project you have created from the dropdown list
 
 ### 3.1. Create Cloud SQL Instance
 
-3.1.1. Go to [Cloud SQL Console.](https://console.cloud.google.com/sql)
+3.1.1. Go to [Cloud SQL.](https://console.cloud.google.com/sql)
 
 3.1.2. Select **Create Instance**.
 
@@ -116,7 +115,7 @@ You should see 1 row set as shown below
 
 ## Step 4: Create Source Bucket
 
-4.1. Go to [Cloud Storage Console.](https://console.cloud.google.com/storage)
+4.1. Go to [Cloud Storage.](https://console.cloud.google.com/storage)
 
 4.2. Select **+Create Bucket**.
 
@@ -146,7 +145,7 @@ You should see 1 row set as shown below
 
 ### 6.1. Create a function.
 
-6.1.1. Go to [Cloud Functions Console.](https://console.cloud.google.com/functions)
+6.1.1. Go to [Cloud Functions.](https://console.cloud.google.com/functions)
 
 6.1.2. Select **Create Function**.
 
@@ -241,5 +240,52 @@ PyMySQL==0.9.3
 
 7.2. Drag and drop a `.txt` file.
 
-> This activated the Cloud Storage trigger for Cloud Functions, firing off the `librarysys` function we created in Step 6
+- This action activates the Cloud Storage trigger for Cloud Functions, firing your `librarysys` function we created in [Step 6.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#step-6-create-serverless-function)
+- Your `.txt file name` gets extracted and added to your `books` table in the `library` database.
 
+7.3. Connect to your database instance using Cloud Shell as defined in [Step 3.2.](https://github.com/devanshidiaries/Serverless/tree/main/GCP%20Cloud%20Functions#32-create-books-table-in-the-library-database)
+
+7.4. Once connected, use the below commands to verify the insertion from the Cloud Function.
+~~~
+USE library;
+select * from books;
+~~~
+
+7.5. You should see a similar output as shown below.
+
+![image](./Screenshots/007.PNG)
+
+> Congratulations, you've successfully built the Library Processing System.
+> Specifically, you've created a Cloud Function that triggers on Cloud Storage and, connects and writes to a Cloud SQL database instance.
+
+## Step 8: Clean Up
+
+This brings us to the end of the Hand-on-Lab. To avoid incurring charges to your Google Cloud account for the resources used in this lab, follow these steps.
+
+### 8.1. Delete the Cloud SQL instance
+
+8.1.1 Go to the [Cloud SQL Instances page](https://console.cloud.google.com/sql) in the Google Cloud Console.
+
+8.1.2. Select the instance you created to open the Instance details page.
+
+8.1.3. In the icon bar at the top of the page, click **Delete**.
+
+8.1.4. In the Delete instance window, type the name of your instance, then click **Delete** to delete the instance. You cannot reuse an instance name for about 7 days after an instance is deleted.
+
+### 8.2. Delete the Cloud Function
+
+8.2.1. Go to the [Cloud Functions page](https://console.cloud.google.com/functions) in the Google Cloud Console.
+
+8.2.2. Select the three dots under **Actions** for your function and choose **Delete**.
+
+8.2.3. Confirm deletion by clicking the **DELETE** button.
+
+### 8.3. Delete Cloud Storage Bucket
+
+8.3.1. Go to the [Cloud Storage page](https://console.cloud.google.com/storage/browser)
+
+8.3.2. Select the bucket you created.
+
+8.3.3. In the icon bar at the top of the page, click **Delete**.
+
+8.3.4. Confirm deletion by clicking the **DELETE** button.
