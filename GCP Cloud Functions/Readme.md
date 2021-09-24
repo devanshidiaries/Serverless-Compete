@@ -46,6 +46,7 @@ Select the project you have created from the dropdown list
 2.3. Enable the following APIs:
 
 - Cloud Functions API
+- Cloud SQL Admin API
 - Secret Manager API
 - Cloud Build API
 - Compute Engine API
@@ -163,7 +164,7 @@ You should see 1 row set as shown below
 
 ### 6.2. Add Security Settings
 
-6.2.1. Select the **Secrets** tab. Click on **REFERENCE A SECRET**.
+6.2.1. Expand **Runtime, Build connections and Security settings**. Select the **Secrets** tab. Click on **REFERENCE A SECRET**.
 
 6.2.2. Click on **REFERENCE A SECRET**. 
 
@@ -262,6 +263,8 @@ select * from books;
 
 This brings us to the end of the Hand-on-Lab. To avoid incurring charges to your Google Cloud account for the resources used in this lab, follow these steps.
 
+*If you created a new project for this lab, you can delete the whole project to clean up all the resources at once. To clean up the resources individually, folllow the nelow steps.*
+
 ### 8.1. Delete the Cloud SQL instance
 
 8.1.1 Go to the [Cloud SQL Instances page](https://console.cloud.google.com/sql) in the Google Cloud Console.
@@ -289,3 +292,11 @@ This brings us to the end of the Hand-on-Lab. To avoid incurring charges to your
 8.3.3. In the icon bar at the top of the page, click **Delete**.
 
 8.3.4. Confirm deletion by clicking the **DELETE** button.
+
+### 8.4. Delete Secrets
+
+8.4.1. Go to the [Cloud Storage page](https://console.cloud.google.com/security/secret-manager)
+
+8.4.2. Select the three dots under **Actions** for each secret, one at a time, and choose **Delete**.
+
+8.4.3. Confirm deletion by clicking the **DELETE SECRET** button.
