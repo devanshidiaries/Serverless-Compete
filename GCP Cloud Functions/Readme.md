@@ -14,10 +14,11 @@ This tutorial will walk you through the steps to create this sample processing s
 
 ## Application Architecture
 
-![Architecture Diagram](./Screenshots/001.png)
+![Architecture Diagram](./Screenshots/architecture.PNG)
 
 - **Cloud Storage -** We will use the [Cloud Storage](https://cloud.google.com/storage) to store new documents to be processed by the function.
 - **Cloud Functions -** All of your business process logic will be hosted by [Cloud Functions.](https://cloud.google.com/functionsl) to run your code with zero server management.
+- **Cloud IAM -** Your Function will use a service account within [Cloud IAM](https://cloud.google.com/iam/) to make authorized API calls
 - **Secret Manager -** You will use [Secret Manager](https://cloud.google.com/secret-manager) to manage, access, and audit secrets across Google Cloud.
 - **Cloud SQL -** You will use the fully managed relational database service for MySQL, [Cloud SQL](https://cloud.google.com/sql), to write data from within serverless functions, writing a small piece of code in Python to add interactivity to your funciton.
 
