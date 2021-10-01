@@ -24,8 +24,6 @@ This tutorial will walk you through the steps to create this sample processing s
 
 ## Step 0: Before You Start
 
-You will need to make sure you have the following components installed and set up before you start with Amazon EKS:
-
 - **GCP Account –** Sign up for a free GCP account [here.](https://cloud.google.com/free/docs/gcp-free-tier)
 
 ## Step 1: Select a Project
